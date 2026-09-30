@@ -46,3 +46,34 @@ def get_login_error_text(driver) -> str | None:
         return el.text
     except Exception:
         return None
+
+
+def open_forgot_password(driver, wait) -> None:
+    link = wait.until(
+        EC.presence_of_element_located((AppiumBy.ID, config.FORGOT_PASSWORD_LINK))
+    )
+    link.click()
+
+
+def request_password_reset(driver, wait, email: str) -> None:
+    email_field = wait.until(
+        EC.presence_of_element_located((AppiumBy.ID, config.FORGOT_PASSWORD_EMAIL_FIELD))
+    )
+    email_field.clear()
+    email_field.send_keys(email)
+
+    driver.find_element(AppiumBy.ID, config.FORGOT_PASSWORD_SUBMIT_BUTTON).click()
+
+
+def get_forgot_password_message_text(driver) -> str | None:
+    try:
+        el = driver.find_element(
+            AppiumBy.XPATH,
+            "//*[contains(@text, '{}') or contains(@text, '{}')]".format(
+                config.FORGOT_PASSWORD_CONFIRMATION_TEXT,
+                config.FORGOT_PASSWORD_ERROR_TEXT,
+            ),
+        )
+        return el.text
+    except Exception:
+        return None

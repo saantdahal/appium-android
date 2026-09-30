@@ -241,7 +241,7 @@ appium/
 │   └── login_flow.py         # create_driver(), login(), is_logged_in(), get_login_error_text()
 ├── tests/
 │   ├── __init__.py
-│   └── test_login.py         # pytest suite: valid login, wrong password, empty fields
+│   └── test_login.py         # pytest suite: valid login, wrong password, empty fields, forgot password
 └── notebooks/
     └── appium_login.ipynb    # interactive step-by-step login flow with inline screenshots
 ```
@@ -252,10 +252,12 @@ interactive/exploratory runs, not automated CI.
 
 **Before running either**, update the placeholder values in
 `core/config.py` — `APP_PACKAGE`, `USERNAME_FIELD`, `PASSWORD_FIELD`,
-`LOGIN_BUTTON`, `LOGGED_IN_MARKER`, `LOGIN_ERROR_TEXT` — using Appium
-Inspector (section 7) against your actual app's login screen. Everything
-else in the project imports its locators from this file, so it's the only
-place you need to edit.
+`LOGIN_BUTTON`, `LOGGED_IN_MARKER`, `LOGIN_ERROR_TEXT`, `FORGOT_PASSWORD_LINK`,
+`FORGOT_PASSWORD_EMAIL_FIELD`, `FORGOT_PASSWORD_SUBMIT_BUTTON`,
+`FORGOT_PASSWORD_CONFIRMATION_TEXT`, `FORGOT_PASSWORD_ERROR_TEXT` — using
+Appium Inspector (section 7) against your actual app's login and forgot
+password screens. Everything else in the project imports its locators from
+this file, so it's the only place you need to edit.
 
 **Running the pytest suite** (from the project root):
 ```bash
